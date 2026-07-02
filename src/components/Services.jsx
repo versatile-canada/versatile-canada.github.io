@@ -6,21 +6,18 @@ const SERVICES = [
     title: 'Personalización',
     description:
       'Diseño de líneas, calcomanías, acabados mate o candy y detalles a medida para una moto que no se confunde con ninguna otra.',
-    specs: ['Diseño en 3 propuestas', 'Vinil, pintura o mixto', 'Asesoría de estilo incluida'],
     image: '/images/personalizacion.jpg',
   },
   {
     title: 'Mantenimiento preventivo',
     description:
       'Revisión completa antes de que el desgaste se convierta en un problema: frenos, fluidos, cadena y puntos críticos del motor.',
-    specs: ['Check-list de 28 puntos', 'Reporte fotográfico', 'Recordatorio de próximo servicio'],
     image: '/images/mantenimiento.jpg',
   },
   {
     title: 'Restauración de pintura',
     description:
       'Eliminación de rayones, óxido y golpes con preparación profesional, base, color y clearcoat de grado automotriz.',
-    specs: ['Igualación exacta de color', 'Clearcoat de alta resistencia', 'Garantía de acabado'],
     image: '/images/restauracion.jpg',
   },
 ]
@@ -70,7 +67,7 @@ function TiltCard({ service, index }) {
         />
 
         {/* Image block */}
-        <div className="relative h-44 w-full overflow-hidden">
+        <div className="relative h-64 w-full overflow-hidden">
           <img
             src={service.image}
             alt={service.title}
@@ -88,15 +85,6 @@ function TiltCard({ service, index }) {
         <div className="relative p-8" style={{ transform: 'translateZ(20px)' }}>
           <h3 className="font-display text-2xl font-medium text-porcelain">{service.title}</h3>
           <p className="mt-4 font-body text-sm leading-relaxed text-chrome-300">{service.description}</p>
-
-          <ul className="mt-6 space-y-2.5 border-t border-chrome-300/10 pt-6">
-            {service.specs.map((spec) => (
-              <li key={spec} className="flex items-center gap-2.5 font-mono text-xs text-chrome-200">
-                <span className="h-1 w-1 rounded-full bg-azure-400" />
-                {spec}
-              </li>
-            ))}
-          </ul>
         </div>
       </motion.article>
     </motion.div>
