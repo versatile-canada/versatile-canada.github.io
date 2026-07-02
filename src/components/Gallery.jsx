@@ -3,20 +3,23 @@ import { motion } from 'framer-motion'
 
 /**
  * NOTE FOR THE DEV TEAM:
- * These gradients are placeholders that stand in for real before/after
- * photography. Swap `swatch` for a background-image (or <img>) pair once
- * shop photos are available — the card, hover-sweep, and caption structure
- * below does not need to change.
+ * Bajaj Dominar and Honda XR150 still use gradient placeholders (`swatch`)
+ * since there's no real photo for them yet. Once one's available, add an
+ * `image` field the same way Honda CB190R and Yamaha MT-03 do below — no
+ * other changes needed, the card automatically prefers a real photo over
+ * the gradient when `image` is present.
  */
 const WORK = [
   {
     bike: 'Honda CB190R',
     finish: 'Azul perla — restauración total',
+    image: '/images/gallery-honda-cb190r.jpg',
     swatch: 'linear-gradient(135deg, #101A44 0%, #22357A 45%, #5C7CF0 100%)',
   },
   {
     bike: 'Yamaha MT-03',
     finish: 'Negro mate — personalización',
+    image: '/images/gallery-yamaha-mt03.jpg',
     swatch: 'linear-gradient(135deg, #08090C 0%, #1B2030 50%, #3A4050 100%)',
   },
   {
@@ -67,10 +70,18 @@ export default function Gallery() {
               whileHover={{ y: -6 }}
               className="clearcoat-sweep group relative aspect-[3/4] overflow-hidden rounded-2xl border border-chrome-300/10"
             >
-              <div
-                className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110"
-                style={{ background: item.swatch }}
-              />
+              {item.image ? (
+                <img
+                  src={item.image}
+                  alt={item.bike}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+              ) : (
+                <div
+                  className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110"
+                  style={{ background: item.swatch }}
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5">
                 <p className="font-display text-lg font-medium text-porcelain">{item.bike}</p>
